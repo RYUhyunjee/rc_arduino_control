@@ -4,9 +4,9 @@
 #include <RPLidar.h>
 
 //#define DEBUG
-#define pin_throttle 8
-#define pin_steer 7
-#define RPLIDAR_MOTOR 3
+#define pin_throttle 8 // set pin number 8 of arduino mega as rc_throttle pin 
+#define pin_steer 7 // set pin number 7 of arduino mega as rc_steer pin
+#define RPLIDAR_MOTOR 3 // set pin number 3 of arduino mega as rplidar_motor pin
 #define ZERO_SPEED 1450
 #define ZERO_STEER 1450
 #define KP 1.5
@@ -45,6 +45,8 @@ void loop() {
     Serial.read();
   }
 
+  //if the diffrence between the pervious and persent steering values is less than 5000, the (tx2)vision will control rc_car or the rplidar will control it.
+  //if you want to change the Criteria then, change the value(now the Criteria is 5000). 
    if( abs(tx2_steer_val_new - tx2_steer_val_old) < 5000){
     // use vision(tx2) control
     steer_val = tx2_steer_val_new;
